@@ -1,12 +1,22 @@
 <?php
 
 /**
+ * List of directory and their name to be recursively included
+ */
+$dir_lookup =  [
+                'interfaces' => 'Interface',
+                'classes' => 'Class',
+                'traits' => 'Trait',
+                'tables' =>'Table',
+               ];
+
+/**
  * Scanner method.
  * @TODO Currently does't include sub DIR
  * @param string $dir
  * @param int $depth
  */
-$_require_all= (function ($name="Interface", $dir = 'interfaces', $depth = 0) {
+$_require_all= (function ($name, $dir , $depth = 0) {
     // require all php files
     $scan = glob("$dir/*$name.{php}",GLOB_BRACE);
     foreach ($scan as $path) {
@@ -15,25 +25,32 @@ $_require_all= (function ($name="Interface", $dir = 'interfaces', $depth = 0) {
 });
 
 /**
+ * Scan the api  $dir_lookup path, recursively including all $dir_lookup files
+ */
+foreach ($dir_lookup as $dir => $name){
+    $_require_all($name,$dir);
+}
+
+/**
  * Scan the api Interface/Contract path, recursively including all Interface files
  * @param string $dir
  * @param int $depth
  */
-$_require_all();
+//$_require_all();
 
 /**
  * Scan the api classes path, recursively including all PHP files
  * @param string $dir
  * @param int $depth
  */
-$_require_all('Class','classes');
+//$_require_all('Class','classes');
 
 /**
  * Scan the api Traits path, recursively including all Traits files
  * @param string $dir
  * @param int $depth
  */
-$_require_all('Trait','traits');
+//$_require_all('Trait','traits');
 
 
 /**
@@ -41,7 +58,7 @@ $_require_all('Trait','traits');
  * @param string $dir
  * @param int $depth
  */
-$_require_all('Table','tables');
+//$_require_all('Table','tables');
 
 
 
