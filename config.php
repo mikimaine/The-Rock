@@ -80,12 +80,11 @@ date_default_timezone_set('Africa/Addis_Ababa');
       ],
 
       // Moedoo will construct queries based on this configurations
-      'TABLES' => [
-      ]
+      'TABLES' => []
     ];
 
       /**
-       * Travers though Models/Tables Folder and include all of there configuration
+       * Travers though Models/Tables (Config::$CONFIG['MODEL_PATH']) Folder and include models/tables configuration
        */
       public static function init()
       {
