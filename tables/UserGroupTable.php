@@ -60,4 +60,29 @@ class UserGroupTable
      */
     public static $_active = true;
 
+
+    /**
+     * Will Register This model on AUTH_REQUESTS['GET'] list
+     * @var bool
+     */
+    const _GET = false;
+
+    /**s
+     * Will Register This model on AUTH_REQUESTS['POST'] list
+     * @var bool
+     */
+    const _POST = false;
+
+    /**
+     * Will Register This model on AUTH_REQUESTS['PATCH'] list
+     * @var bool
+     */
+    const _PATCH = false;
+
+    /**
+     * Will Register This model on AUTH_REQUESTS['DELETE'] list
+     * @var bool
+     */
+    const _DELETE = false;
+
 }

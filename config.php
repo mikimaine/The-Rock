@@ -93,6 +93,7 @@ date_default_timezone_set('Africa/Addis_Ababa');
                   $table = strtr($table,array(Config::$CONFIG['MODEL_PATH'].'/'=>'','.php'=>''));
               if ($table::$_active){
                   Config::$CONFIG['TABLES'][$table::$_table] = $table::$CONFIG;
+
               }
           }
       }
