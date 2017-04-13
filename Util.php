@@ -111,6 +111,21 @@
     }
 
 
+      /**
+       * @param $variable
+       * @param array $cases
+       * @return mixed
+       */
+      public static function string_replace($variable,$cases = array()){
+
+          if (is_array($cases)){
+              foreach ($cases as $key => $value){
+                  $variable =str_replace($key,$value,$variable);
+              }
+              return $variable;
+          }
+      }
+
 
     /**
      * Transliterate a UTF-8 value to ASCII.
@@ -126,7 +141,7 @@
 
         return preg_replace('/[^\x20-\x7E]/u', '', $value);
     }
-
+    
     
     
     /**

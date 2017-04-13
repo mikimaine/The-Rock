@@ -6,16 +6,19 @@
   $__REST__ = [];
 
   require __DIR__ .'/vendor/autoload.php';
+  require  __DIR__.'/autoload_helper.php';
+  require __DIR__ .'/Util.php';
   require __DIR__ .'/config.php';
   require __DIR__ .'/Moedoo.php';
   require __DIR__ .'/Rock.php';
-  require __DIR__ .'/Util.php';
   require __DIR__ .'/services/REST.php';
   require __DIR__ .'/services/OPTIONS.php';
   require __DIR__ .'/services/all.php';
   require __DIR__ .'/services/auth.php';
   require __DIR__ .'/services/S3.php';
   require __DIR__ .'/services/graph.php';
+
+  new Config();
 
   $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
     $r->addRoute('GET', Config::get('ROOT_URL').'/auth', 'auth');

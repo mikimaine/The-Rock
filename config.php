@@ -7,10 +7,12 @@
    * @package   Deez Nuts
    */
 
-  date_default_timezone_set('Africa/Addis_Ababa');
+//use Tables\RockTable;
+
+date_default_timezone_set('Africa/Addis_Ababa');
 
   class Config {
-    private static $CONFIG = [
+    public static $CONFIG = [
       /**
        * when the API root directory is accessed from a non root directory
        * set `ROOT_URL` to the root directory for `index.php` file
@@ -20,7 +22,7 @@
        * http://app.io/path_to_api/api/
        * `ROOT_URL` will be `/path_to_api`
        */
-      'ROOT_URL' => '',
+      'ROOT_URL' => 'The-Rock',
 
       'TABLE_PREFIX'  => 'tr001_',
       'HASH' => 'sha512',
@@ -42,8 +44,8 @@
 
       // database
       'DB_HOST' => 'localhost',
-      'DB_USER' => 'moe',
-      'DB_PASSWORD' => '\"\"',
+      'DB_USER' => 'postgres',
+      'DB_PASSWORD' => 'root',
       'DB_PORT' => 5432,
       'DB_NAME' => 'rock',
       'DEFAULT_DEPTH' => 1,
@@ -75,23 +77,7 @@
 
       // Moedoo will construct queries based on this configurations
       'TABLES' => [
-        'rock'        => [
-          'pk'        => 'id',
-          'columns'   => ['id', 'col_integer', 'col_float', 'col_double', 'col_json', 'col_bool', 'col_geometry', 'col_string', 'col_fk', 'col_fk_m'],
-          'returning' => ['id', 'col_integer', 'col_float', 'col_double', 'col_json', 'col_bool', 'col_geometry', 'col_string', 'col_fk', 'col_fk_m'],
-          'bool'      => ['col_bool'],
-          'int'       => ['id', 'col_integer', 'col_fk'],
-          '[int]'     => ['col_fk_m'],
-          'float'     => ['col_float'],
-          'double'    => ['col_double'],
-          'JSON'      => ['col_json'],
-          'geometry'  => ['col_geometry'],
-          'search'    => ['col_string'],
-          'fk'        => [
-            'col_fk'      => ['table' => 's3', 'references' => 'id'],
-            '[col_fk_m]'  => ['table' => 'tag', 'references' => 'id']
-          ]
-        ],
+
         's3'          => [
           'pk'        => 'id',
           'columns'   => ['id', 'name', 'size', 'type', 'url'],
@@ -153,18 +139,48 @@
           'fk'        => [
             '{user}'  => ['table' => 'user', 'referenced_by' => 'user_group_id', 'referencing_column' => 'user_group']
           ]
-        ]
+        ],
+//          'rock'        => [
+//              'pk'        => 'id',
+//              'columns'   => ['id', 'col_integer', 'col_float', 'col_double', 'col_json', 'col_bool', 'col_geometry', 'col_string', 'col_fk', 'col_fk_m'],
+//              'returning' => ['id', 'col_integer', 'col_float', 'col_double', 'col_json', 'col_bool', 'col_geometry', 'col_string', 'col_fk', 'col_fk_m'],
+//              'bool'      => ['col_bool'],
+//              'int'       => ['id', 'col_integer', 'col_fk'],
+//              '[int]'     => ['col_fk_m'],
+//              'float'     => ['col_float'],
+//              'double'    => ['col_double'],
+//              'JSON'      => ['col_json'],
+//              'geometry'  => ['col_geometry'],
+//              'search'    => ['col_string'],
+//              'fk'        => [
+//                  'col_fk'      => ['table' => 's3', 'references' => 'id'],
+//                  '[col_fk_m]'  => ['table' => 'tag', 'references' => 'id']
+//              ]
+//          ]
       ]
     ];
 
-    /**
-     * returns configuration
-     *
-     * EXCEPTION CODES
-     * 1: unknown configuration key requested
-     *
-     * @param string $key
-     */
+      public function __construct()
+      {
+          $tables = glob('tables/*Table.{php}', GLOB_BRACE);
+          foreach ($tables as $table){
+                  $table= Util::string_replace($table,array('tables/'=>'','.php'=>''));
+              if ($table::$_active){
+                  Config::$CONFIG['TABLES'][$table::$_table] = $table::$CONFIG;
+              }
+          }
+      }
+
+      /**
+       * returns configuration
+       *
+       * EXCEPTION CODES
+       * 1: unknown configuration key requested
+       *
+       * @param string $key
+       * @return mixed
+       * @throws Exception
+       */
     public static function get ($key = 'TheRock') {
       if (array_key_exists($key, Config::$CONFIG) === false) {
         throw new Exception("undefined key `{$key}`", 1);
