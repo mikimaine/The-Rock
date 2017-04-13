@@ -5,8 +5,9 @@
 /**
  * Class UserGroupTable
  */
-class TagTable implements ModelsInterface
+class TagTable implements ModelInterface
 {
+    use ModelTrait;
 
     /**
      * @var array
@@ -59,21 +60,4 @@ class TagTable implements ModelsInterface
      */
     const _DELETE = false;
 
-    /**
-     * Return Model/Table Configuration
-     * @return array
-     */
-    public static function getConfig()
-    {
-        return TagTable::$CONFIG;
-    }
-
-    /**
-     * Return Model/Table Name
-     * @return string
-     */
-    public static function getTable()
-    {
-        return TagTable::$_table;
-    }
 }

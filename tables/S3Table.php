@@ -4,9 +4,10 @@
 /**
  * Class UserGroupTable
  */
-class S3Table implements ModelsInterface
+class S3Table implements ModelInterface
 {
 
+    use ModelTrait;
     /**
      * @var array
      */
@@ -54,21 +55,5 @@ class S3Table implements ModelsInterface
      * @var bool
      */
     const _DELETE = false;
-    /**
-     * Return Model/Table Configuration
-     * @return array
-     */
-    public static function getConfig()
-    {
-        return S3Table::$CONFIG;
-    }
 
-    /**
-     * Return Model/Table Name
-     * @return string
-     */
-    public static function getTable()
-    {
-        return S3Table::$_table;
-    }
 }

@@ -5,8 +5,9 @@
 /**
  * Class UserGroupTable
  */
-class UserGroupTable implements ModelsInterface
+class UserGroupTable implements ModelInterface
 {
+    use ModelTrait;
 
     /**
      * @var array
@@ -85,22 +86,6 @@ class UserGroupTable implements ModelsInterface
      */
     const _DELETE = false;
 
-    /**
-     * Return Model/Table Configuration
-     * @return array
-     */
-    public static function getConfig()
-    {
-        return UserGroupTable::$CONFIG;
-    }
 
-    /**
-     * Return Model/Table Name
-     * @return string
-     */
-    public static function getTable()
-    {
-        return UserGroupTable::$_table;
-    }
 
 }

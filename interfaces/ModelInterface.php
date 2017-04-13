@@ -4,7 +4,7 @@
 /**
  * Interface Models
  */
-interface ModelsInterface
+interface ModelInterface
 {
 
     /**

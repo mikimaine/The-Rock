@@ -4,9 +4,10 @@
 /**
  * Class RockTable
  */
-class RockTable implements ModelsInterface
+class RockTable implements ModelInterface
 {
 
+    use ModelTrait;
     /**
      * @var array
      */
@@ -65,25 +66,6 @@ class RockTable implements ModelsInterface
      * @var bool
      */
     const _DELETE = false;
-
-    /**
-     * Return Model/Table Configuration
-     * @return array
-     */
-    public static function getConfig()
-    {
-        return RockTable::$CONFIG;
-    }
-
-    /**
-     * Return Model/Table Name
-     * @return string
-     */
-    public static function getTable()
-    {
-        return RockTable::$_table;
-    }
-
 
 
 }
