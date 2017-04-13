@@ -25,7 +25,7 @@ trait ModelTrait
             return self::$_table;
         }
 
-        return strtolower(str_replace('Table','',get_called_class()));
+        return strtolower(self::decamelize());
 
     }
 
@@ -67,6 +67,22 @@ trait ModelTrait
     public static function isAuthDelete()
     {
         return self::$_auth_delete;
+    }
+
+    /**
+     * @return mixed
+     */
+    private static function getTableName()
+    {
+        return str_replace('Table', '', get_called_class());
+    }
+
+    /**
+     * @return mixed
+     */
+    private static function decamelize()
+    {
+        return preg_replace(['/([a-z\d])([A-Z])/', '/([^_])([A-Z][a-z])/'], '$1_$2', self::getTableName());
     }
 
 }

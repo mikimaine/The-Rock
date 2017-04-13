@@ -30,15 +30,12 @@ class RockTable extends ModelClass  implements ModelInterface
     ];
 
     /**
-     * Name of the table
+     * You can remove this if you want
+     * Name of the table will be automatically resolved from class name.
      * @var string
      */
     private static $_table = 'rock';
 
-    /**
-     * @override ModelTrait
-     * @var bool
-     */
-//    private static $_active = true;
 
+    protected  static $_active = false;
 }

@@ -29,4 +29,6 @@ class TagTable extends ModelClass implements ModelInterface
      */
     private static $_table = 'tag';
 
+    protected static $_active = false;
+
 }
