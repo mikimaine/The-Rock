@@ -12,7 +12,7 @@
 date_default_timezone_set('Africa/Addis_Ababa');
 
   class Config {
-    public static $CONFIG = [
+    private static $CONFIG = [
       /**
        * when the API root directory is accessed from a non root directory
        * set `ROOT_URL` to the root directory for `index.php` file
