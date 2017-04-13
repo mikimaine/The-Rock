@@ -111,7 +111,7 @@
     }
 
 
-    
+
     /**
      * Transliterate a UTF-8 value to ASCII.
      *

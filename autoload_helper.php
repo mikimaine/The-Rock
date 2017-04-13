@@ -2,7 +2,7 @@
 
 
     /**
-     * Scan the api path, recursively including all PHP files
+     * Scan the api tables path, recursively including all PHP files
      * @param string $dir
      * @param int $depth
      */

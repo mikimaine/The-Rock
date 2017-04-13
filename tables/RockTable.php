@@ -1,11 +1,15 @@
 <?php
 
 //namespace Tables;
-
-
+/**
+ * Class RockTable
+ */
 class RockTable
 {
 
+    /**
+     * @var array
+     */
     public static $CONFIG = [
             'pk'        => 'id',
             'columns'   => ['id', 'col_integer', 'col_float', 'col_double', 'col_json', 'col_bool', 'col_geometry', 'col_string', 'col_fk', 'col_fk_m'],
@@ -24,9 +28,17 @@ class RockTable
             ]
     ];
 
+    /**
+     * Name of the table
+     * @var string
+     */
     public static $_table = 'rock';
 
 
+    /**
+     * Status of the table
+     * @var bool
+     */
     public static $_active = true;
 
 }

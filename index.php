@@ -18,7 +18,10 @@
   require __DIR__ .'/services/S3.php';
   require __DIR__ .'/services/graph.php';
 
-  new Config();
+/**
+ * Bootstrap Configuration
+ */
+  Config::init();
 
   $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
     $r->addRoute('GET', Config::get('ROOT_URL').'/auth', 'auth');
