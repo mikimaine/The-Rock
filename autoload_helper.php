@@ -1,17 +1,16 @@
 <?php
 
 /**
- * Scanner method
+ * Scanner method.
+ * @TODO Currently does't include sub DIR
  * @param string $dir
  * @param int $depth
  */
 $_require_all= (function ($name="Interface", $dir = 'interfaces', $depth = 0) {
     // require all php files
-    $scan = glob("$dir/*");
+    $scan = glob("$dir/*$name.{php}",GLOB_BRACE);
     foreach ($scan as $path) {
-        if (preg_match('/\\'.$name.'.php$/', $path)) {
             require_once $path;
-        }
     }
 });
 
