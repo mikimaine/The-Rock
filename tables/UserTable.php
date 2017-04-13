@@ -5,7 +5,7 @@
 /**
  * Class UserGroupTable
  */
-class UserTable
+class UserTable implements ModelsInterface
 {
 
     /**

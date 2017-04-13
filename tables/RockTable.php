@@ -4,7 +4,7 @@
 /**
  * Class RockTable
  */
-class RockTable
+class RockTable implements ModelsInterface
 {
 
     /**

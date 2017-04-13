@@ -4,7 +4,7 @@
 /**
  * Class UserGroupTable
  */
-class S3Table
+class S3Table implements ModelsInterface
 {
 
     /**

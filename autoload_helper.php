@@ -1,5 +1,6 @@
 <?php
 
+require_once  __DIR__.'/interface/ModelsInterface.php';
 
     /**
      * Scan the api tables path, recursively including all PHP files
