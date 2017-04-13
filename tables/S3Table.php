@@ -10,7 +10,7 @@ class S3Table
     /**
      * @var array
      */
-    public static $CONFIG = [
+    private static $CONFIG = [
                         'pk'        => 'id',
                         'columns'   => ['id', 'name', 'size', 'type', 'url'],
                         'returning' => ['id', 'name', 'size', 'type', 'url'],
@@ -21,7 +21,7 @@ class S3Table
      * Name of the table
      * @var string
      */
-    public static $_table = 's3';
+    private static $_table = 's3';
 
 
     /**
@@ -29,7 +29,7 @@ class S3Table
      * This will force the table to be removed from Config::$Config['Table'] static arrays
      * @var bool
      */
-    public static $_active = true;
+    const _ACTIVE = true;
 
     /**
      * Will Register This model on AUTH_REQUESTS['GET'] list
@@ -54,5 +54,21 @@ class S3Table
      * @var bool
      */
     const _DELETE = false;
+    /**
+     * Return Model/Table Configuration
+     * @return array
+     */
+    public static function getConfig()
+    {
+        return S3Table::$CONFIG;
+    }
 
+    /**
+     * Return Model/Table Name
+     * @return string
+     */
+    public static function getTable()
+    {
+        return S3Table::$_table;
+    }
 }

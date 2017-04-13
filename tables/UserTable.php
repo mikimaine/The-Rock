@@ -11,7 +11,7 @@ class UserTable
     /**
      * @var array
      */
-    public static $CONFIG = [
+    private static $CONFIG = [
                         'pk'        => 'user_id',
                         'columns'   => ['user_id', 'user_full_name', 'user_username', 'user_password', 'user_status', 'user_group'],
                         'returning' => ['user_id', 'user_full_name', 'user_username', 'user_status', 'user_group'],
@@ -27,14 +27,14 @@ class UserTable
      * Name of the table
      * @var string
      */
-    public static $_table = 'user';
+    private static $_table = 'user';
 
 
     /**
      * Status of the table
      * @var bool
      */
-    public static $_active = true;
+    const _ACTIVE = true;
 
     /**
      * Will Register This model on AUTH_REQUESTS['GET'] list
@@ -59,5 +59,23 @@ class UserTable
      * @var bool
      */
     const _DELETE = false;
+
+    /**
+     * Return Model/Table Configuration
+     * @return array
+     */
+    public static function getConfig()
+    {
+        return UserTable::$CONFIG;
+    }
+
+    /**
+     * Return Model/Table Name
+     * @return string
+     */
+    public static function getTable()
+    {
+        return UserTable::$_table;
+    }
 
 }

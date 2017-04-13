@@ -91,8 +91,8 @@ date_default_timezone_set('Africa/Addis_Ababa');
           $tables = glob(Config::$CONFIG['MODEL_PATH'].'/*Table.{php}', GLOB_BRACE);
           foreach ($tables as $table){
                   $table = strtr($table,array(Config::$CONFIG['MODEL_PATH'].'/'=>'','.php'=>''));
-              if ($table::$_active){
-                  Config::$CONFIG['TABLES'][$table::$_table] = $table::$CONFIG;
+              if ($table::_ACTIVE){
+                  Config::$CONFIG['TABLES'][$table::getTable()] = $table::getConfig();
 
               }
           }

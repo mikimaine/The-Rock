@@ -11,7 +11,7 @@ class UserGroupTable
     /**
      * @var array
      */
-    public static $CONFIG = [
+    private static $CONFIG = [
                 'pk'        => 'user_group_id',
                 'columns'   => [
                     'user_group_id',
@@ -51,14 +51,14 @@ class UserGroupTable
      * Name of the table
      * @var string
      */
-    public static $_table = 'user_group';
+    private static $_table = 'user_group';
 
 
     /**
      * Status of the table
      * @var bool
      */
-    public static $_active = true;
+    const _ACTIVE = true;
 
 
     /**
@@ -84,5 +84,23 @@ class UserGroupTable
      * @var bool
      */
     const _DELETE = false;
+
+    /**
+     * Return Model/Table Configuration
+     * @return array
+     */
+    public static function getConfig()
+    {
+        return UserGroupTable::$CONFIG;
+    }
+
+    /**
+     * Return Model/Table Name
+     * @return string
+     */
+    public static function getTable()
+    {
+        return UserGroupTable::$_table;
+    }
 
 }

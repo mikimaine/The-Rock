@@ -11,7 +11,7 @@ class TagTable
     /**
      * @var array
      */
-    public static $CONFIG = [
+    private static $CONFIG = [
                     'pk'        => 'id',
                     'columns'   => ['id', 'tag'],
                     'returning' => ['id', 'tag'],
@@ -26,14 +26,14 @@ class TagTable
      * Name of the table
      * @var string
      */
-    public static $_table = 'tag';
+    private static $_table = 'tag';
 
 
     /**
      * Status of the table
      * @var bool
      */
-    public static $_active = true;
+    const _ACTIVE= true;
 
     /**
      * Will Register This model on AUTH_REQUESTS['GET'] list
@@ -59,4 +59,21 @@ class TagTable
      */
     const _DELETE = false;
 
+    /**
+     * Return Model/Table Configuration
+     * @return array
+     */
+    public static function getConfig()
+    {
+        return TagTable::$CONFIG;
+    }
+
+    /**
+     * Return Model/Table Name
+     * @return string
+     */
+    public static function getTable()
+    {
+        return TagTable::$_table;
+    }
 }

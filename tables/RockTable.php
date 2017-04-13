@@ -10,7 +10,7 @@ class RockTable
     /**
      * @var array
      */
-    public static $CONFIG = [
+    private static $CONFIG = [
         'pk' => 'id',
         'columns' => ['id', 'col_integer', 'col_float', 'col_double', 'col_json', 'col_bool', 'col_geometry', 'col_string', 'col_fk', 'col_fk_m'],
         'returning' => ['id', 'col_integer', 'col_float', 'col_double', 'col_json', 'col_bool', 'col_geometry', 'col_string', 'col_fk', 'col_fk_m'],
@@ -32,14 +32,14 @@ class RockTable
      * Name of the table
      * @var string
      */
-    public static $_table = 'rock';
+    private static $_table = 'rock';
 
 
     /**
      * Status of the table
      * @var bool
      */
-    public static $_active = true;
+    const _ACTIVE = true;
 
 
     /**
@@ -65,5 +65,25 @@ class RockTable
      * @var bool
      */
     const _DELETE = false;
+
+    /**
+     * Return Model/Table Configuration
+     * @return array
+     */
+    public static function getConfig()
+    {
+        return RockTable::$CONFIG;
+    }
+
+    /**
+     * Return Model/Table Name
+     * @return string
+     */
+    public static function getTable()
+    {
+        return RockTable::$_table;
+    }
+
+
 
 }
