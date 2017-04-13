@@ -26,6 +26,7 @@ class RockTable
 
     public static $_table = 'rock';
 
+
     public static $_active = true;
 
 }

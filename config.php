@@ -164,7 +164,7 @@ date_default_timezone_set('Africa/Addis_Ababa');
       {
           $tables = glob('tables/*Table.{php}', GLOB_BRACE);
           foreach ($tables as $table){
-                  $table= Util::string_replace($table,array('tables/'=>'','.php'=>''));
+                  $table = strtr($table,array('tables/'=>'','.php'=>''));
               if ($table::$_active){
                   Config::$CONFIG['TABLES'][$table::$_table] = $table::$CONFIG;
               }
