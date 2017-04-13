@@ -33,4 +33,7 @@ abstract class ModelClass
      */
     protected static $_auth_delete = false;
 
+
+    protected static $_forbidden_request = [];
+
 }

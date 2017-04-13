@@ -4,7 +4,7 @@
 /**
  * Class RockTable
  */
-class RockTable extends ModelClass  implements ModelInterface
+class RockTable extends ModelClass implements ModelInterface
 {
 
     use ModelTrait;
@@ -30,16 +30,53 @@ class RockTable extends ModelClass  implements ModelInterface
     ];
 
     /**
-     * You can remove this if you want
-     * Name of the table will be automatically resolved from class name.
+     * You can remove this if you want the name of the table to be automatically resolved from class name.
      * @var string
      */
     private static $_table = 'rock';
 
     /**
+     * This will allow the Model to be registered in the lists of TABLES/Models
+     * You can remove this to use the default(true) that is found in the Super class
+     * @var bool
+     */
+    protected static $_active = true;
+
+    /**
+     * This will allow the Model to be registered in the list of AUTH_REQUESTS['GET']
+     * You can remove this to use the default(false) that is found in the Super class
      * @var bool
      */
     protected static $_auth_get = true;
+
+    /**
+     * This will allow the Model to be registered in the list of AUTH_REQUESTS['POST']
+     * You can remove this to use the default(false) that is found in the Super class
+     * @var bool
+     */
+    protected static $_auth_post = true;
+
+    /**
+     * This will allow the Model to be registered in the list of AUTH_REQUESTS['PATCH']
+     * You can remove this to use the default(false) that is found in the Super class
+     * @var bool
+     */
+    protected static $_auth_patch = true;
+
+    /**
+     * This will allow the Model to be registered in the list of AUTH_REQUESTS['DELETE']
+     * You can remove this to use the default(false) that is found in the Super class
+     * @var bool
+     */
+    protected static $_auth_delete = true;
+
+
+    /**
+     * This wil allow the Model to be registered in the lists of FORBIDDEN_REQUESTS
+     * You can remove this to use the default(empty) that is found in the Super class
+     * @var array
+     */
+    protected static $_forbidden_request = ['GET','POST','PATCH','DELETE'];
 
 
 }

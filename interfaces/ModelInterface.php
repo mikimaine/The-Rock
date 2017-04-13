@@ -44,4 +44,10 @@ interface ModelInterface
      */
     public static function isAuthDelete();
 
+
+    /**
+     * @return mixed
+     */
+    public static function getForbiddenRequest();
+
 }

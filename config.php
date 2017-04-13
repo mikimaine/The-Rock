@@ -92,15 +92,8 @@ date_default_timezone_set('Africa/Addis_Ababa');
           foreach ($tables as $table){
                   $table = strtr($table,array(Config::$CONFIG['MODEL_PATH'].'/'=>'','.php'=>''));
               if ($table::isActive()){
-
-                  $table::isAuthGet()   ?   array_push(Config::$CONFIG['AUTH_REQUESTS']['GET'],$table::getTable()) : null;
-
-                  $table::isAuthPost()  ?   array_push(Config::$CONFIG['AUTH_REQUESTS']['POST'],$table::getTable()): null;
-
-                  $table::isAuthPatch() ?   array_push(Config::$CONFIG['AUTH_REQUESTS']['PATCH'],$table::getTable()): null;
-
-                  $table::isAuthDelete()?   array_push(Config::$CONFIG['AUTH_REQUESTS']['DELETE'],$table::getTable()): null;
-
+                  self::bindAuthList($table);
+                  self::bindForbiddenList($table);
                   Config::$CONFIG['TABLES'][$table::getTable()] = $table::getConfig();
               }
           }
@@ -123,4 +116,30 @@ date_default_timezone_set('Africa/Addis_Ababa');
 
       return Config::$CONFIG[$key];
     }
+
+      /**
+       * take a table and build its Forbidden List
+       * @param $table
+       */
+      private static function bindForbiddenList($table)
+      {
+         foreach (Config::$CONFIG['FORBIDDEN_REQUESTS'] as $key => $value){
+             in_array($key, $table::getForbiddenRequest()) ? array_push(Config::$CONFIG['FORBIDDEN_REQUESTS'][$key], $table::getTable()) : null;
+         }
+      }
+
+      /**
+       * take a table and build its Auth List
+       * @param $table
+       */
+      private static function bindAuthList($table)
+      {
+          $table::isAuthGet() ? array_push(Config::$CONFIG['AUTH_REQUESTS']['GET'], $table::getTable()) : null;
+
+          $table::isAuthPost() ? array_push(Config::$CONFIG['AUTH_REQUESTS']['POST'], $table::getTable()) : null;
+
+          $table::isAuthPatch() ? array_push(Config::$CONFIG['AUTH_REQUESTS']['PATCH'], $table::getTable()) : null;
+
+          $table::isAuthDelete() ? array_push(Config::$CONFIG['AUTH_REQUESTS']['DELETE'], $table::getTable()) : null;
+      }
   }

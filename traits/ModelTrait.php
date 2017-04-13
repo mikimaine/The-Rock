@@ -69,6 +69,11 @@ trait ModelTrait
         return self::$_auth_delete;
     }
 
+    public static function getForbiddenRequest()
+    {
+        return self::$_forbidden_request;
+    }
+
     /**
      * @return mixed
      */
