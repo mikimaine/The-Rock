@@ -19,4 +19,29 @@ interface ModelInterface
      */
     public static function getTable();
 
+    /**
+     * @return boolean
+     */
+    public static function isActive();
+
+    /**
+     * @return boolean
+     */
+    public static function isAuthGet();
+
+    /**
+     * @return boolean
+     */
+    public static function isAuthPost();
+
+    /**
+     * @return boolean
+     */
+    public static function isAuthPatch();
+
+    /**
+     * @return boolean
+     */
+    public static function isAuthDelete();
+
 }

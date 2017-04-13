@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Class ModelTrait
+ */
 trait ModelTrait
 {
 
@@ -18,7 +21,52 @@ trait ModelTrait
      */
     public static function getTable()
     {
-        return self::$_table;
+        if (isset(self::$_table)){
+            return self::$_table;
+        }
+
+        return strtolower(str_replace('Table','',get_called_class()));
+
+    }
+
+    /**
+     * @return boolean
+     */
+    public static function isActive()
+    {
+        return self::$_active;
+    }
+
+    /**
+     * @return boolean
+     */
+    public static function isAuthGet()
+    {
+        return self::$_auth_get;
+    }
+
+    /**
+     * @return boolean
+     */
+    public static function isAuthPost()
+    {
+        return self::$_auth_post;
+    }
+
+    /**
+     * @return boolean
+     */
+    public static function isAuthPatch()
+    {
+        return self::$_auth_patch;
+    }
+
+    /**
+     * @return boolean
+     */
+    public static function isAuthDelete()
+    {
+        return self::$_auth_delete;
     }
 
 }

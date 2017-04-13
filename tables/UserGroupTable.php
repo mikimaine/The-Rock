@@ -5,7 +5,7 @@
 /**
  * Class UserGroupTable
  */
-class UserGroupTable implements ModelInterface
+class UserGroupTable extends ModelClass implements ModelInterface
 {
     use ModelTrait;
 
@@ -53,39 +53,5 @@ class UserGroupTable implements ModelInterface
      * @var string
      */
     private static $_table = 'user_group';
-
-
-    /**
-     * Status of the table
-     * @var bool
-     */
-    const _ACTIVE = true;
-
-
-    /**
-     * Will Register This model on AUTH_REQUESTS['GET'] list
-     * @var bool
-     */
-    const _GET = false;
-
-    /**s
-     * Will Register This model on AUTH_REQUESTS['POST'] list
-     * @var bool
-     */
-    const _POST = false;
-
-    /**
-     * Will Register This model on AUTH_REQUESTS['PATCH'] list
-     * @var bool
-     */
-    const _PATCH = false;
-
-    /**
-     * Will Register This model on AUTH_REQUESTS['DELETE'] list
-     * @var bool
-     */
-    const _DELETE = false;
-
-
 
 }

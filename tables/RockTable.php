@@ -4,7 +4,7 @@
 /**
  * Class RockTable
  */
-class RockTable implements ModelInterface
+class RockTable extends ModelClass  implements ModelInterface
 {
 
     use ModelTrait;
@@ -35,37 +35,10 @@ class RockTable implements ModelInterface
      */
     private static $_table = 'rock';
 
-
     /**
-     * Status of the table
+     * @override ModelTrait
      * @var bool
      */
-    const _ACTIVE = true;
-
-
-    /**
-     * Will Register This model on AUTH_REQUESTS['GET'] list
-     * @var bool
-     */
-    const _GET = false;
-
-    /**s
-     * Will Register This model on AUTH_REQUESTS['POST'] list
-     * @var bool
-     */
-    const _POST = false;
-
-    /**
-     * Will Register This model on AUTH_REQUESTS['PATCH'] list
-     * @var bool
-     */
-    const _PATCH = false;
-
-    /**
-     * Will Register This model on AUTH_REQUESTS['DELETE'] list
-     * @var bool
-     */
-    const _DELETE = false;
-
+//    private static $_active = true;
 
 }

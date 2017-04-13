@@ -21,6 +21,12 @@ $_require_all= (function ($name="Interface", $dir = 'interfaces', $depth = 0) {
  */
 $_require_all();
 
+/**
+ * Scan the api classes path, recursively including all PHP files
+ * @param string $dir
+ * @param int $depth
+ */
+$_require_all('Class','classes');
 
 /**
  * Scan the api Traits path, recursively including all Traits files
@@ -28,6 +34,7 @@ $_require_all();
  * @param int $depth
  */
 $_require_all('Trait','traits');
+
 
 /**
  * Scan the api tables path, recursively including all PHP files
