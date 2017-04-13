@@ -24,6 +24,6 @@ class S3Table extends ModelClass implements ModelInterface
      */
     private static $_table = 's3';
 
-    protected static $_active = false;
+
 
 }

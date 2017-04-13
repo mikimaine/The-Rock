@@ -31,4 +31,6 @@ class UserTable extends ModelClass implements ModelInterface
      */
     private static $_table = 'user';
 
+    protected static $_auth_get = true;
+
 }

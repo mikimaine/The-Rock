@@ -92,6 +92,15 @@ date_default_timezone_set('Africa/Addis_Ababa');
           foreach ($tables as $table){
                   $table = strtr($table,array(Config::$CONFIG['MODEL_PATH'].'/'=>'','.php'=>''));
               if ($table::isActive()){
+
+                  $table::isAuthGet()   ?   array_push(Config::$CONFIG['AUTH_REQUESTS']['GET'],$table::getTable()) : null;
+
+                  $table::isAuthPost()  ?   array_push(Config::$CONFIG['AUTH_REQUESTS']['POST'],$table::getTable()): null;
+
+                  $table::isAuthPatch() ?   array_push(Config::$CONFIG['AUTH_REQUESTS']['PATCH'],$table::getTable()): null;
+
+                  $table::isAuthDelete()?   array_push(Config::$CONFIG['AUTH_REQUESTS']['DELETE'],$table::getTable()): null;
+
                   Config::$CONFIG['TABLES'][$table::getTable()] = $table::getConfig();
               }
           }

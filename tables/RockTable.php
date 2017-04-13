@@ -36,6 +36,10 @@ class RockTable extends ModelClass  implements ModelInterface
      */
     private static $_table = 'rock';
 
+    /**
+     * @var bool
+     */
+    protected static $_auth_get = true;
 
-    protected  static $_active = false;
+
 }

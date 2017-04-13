@@ -52,6 +52,6 @@ class UserGroupTable extends ModelClass implements ModelInterface
      * Name of the table
      * @var string
      */
-//    private static $_table = 'user_group';
+    private static $_table = 'user_group';
 
 }
