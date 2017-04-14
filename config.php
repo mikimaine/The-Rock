@@ -85,6 +85,8 @@ date_default_timezone_set('Africa/Addis_Ababa');
 
       /**
        * Travers though Models/Tables (Config::$CONFIG['MODEL_PATH']) Folder and include models/tables configuration
+       * Build AuthList
+       * Build ForbiddenList
        */
       public static function init()
       {
@@ -113,7 +115,6 @@ date_default_timezone_set('Africa/Addis_Ababa');
       if (array_key_exists($key, Config::$CONFIG) === false) {
         throw new Exception("undefined key `{$key}`", 1);
       }
-
       return Config::$CONFIG[$key];
     }
 
@@ -134,12 +135,8 @@ date_default_timezone_set('Africa/Addis_Ababa');
        */
       private static function bindAuthList($table)
       {
-          $table::isAuthGet() ? array_push(Config::$CONFIG['AUTH_REQUESTS']['GET'], $table::getTable()) : null;
-
-          $table::isAuthPost() ? array_push(Config::$CONFIG['AUTH_REQUESTS']['POST'], $table::getTable()) : null;
-
-          $table::isAuthPatch() ? array_push(Config::$CONFIG['AUTH_REQUESTS']['PATCH'], $table::getTable()) : null;
-
-          $table::isAuthDelete() ? array_push(Config::$CONFIG['AUTH_REQUESTS']['DELETE'], $table::getTable()) : null;
+          foreach (Config::$CONFIG['AUTH_REQUESTS'] as $key => $value){
+              in_array($key, $table::getAuthRequest()) ? array_push(Config::$CONFIG['AUTH_REQUESTS'][$key], $table::getTable()) : null;
+          }
       }
   }

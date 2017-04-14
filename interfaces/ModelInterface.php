@@ -25,27 +25,6 @@ interface ModelInterface
     public static function isActive();
 
     /**
-     * @return boolean
-     */
-    public static function isAuthGet();
-
-    /**
-     * @return boolean
-     */
-    public static function isAuthPost();
-
-    /**
-     * @return boolean
-     */
-    public static function isAuthPatch();
-
-    /**
-     * @return boolean
-     */
-    public static function isAuthDelete();
-
-
-    /**
      * @return mixed
      */
     public static function getForbiddenRequest();

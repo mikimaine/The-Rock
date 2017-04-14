@@ -38,40 +38,19 @@ trait ModelTrait
     }
 
     /**
-     * @return boolean
+     * @return mixed
      */
-    public static function isAuthGet()
-    {
-        return self::$_auth_get;
-    }
-
-    /**
-     * @return boolean
-     */
-    public static function isAuthPost()
-    {
-        return self::$_auth_post;
-    }
-
-    /**
-     * @return boolean
-     */
-    public static function isAuthPatch()
-    {
-        return self::$_auth_patch;
-    }
-
-    /**
-     * @return boolean
-     */
-    public static function isAuthDelete()
-    {
-        return self::$_auth_delete;
-    }
-
     public static function getForbiddenRequest()
     {
         return self::$_forbidden_request;
+    }
+
+    /**
+     * @return mixed
+     */
+    public static function getAuthRequest()
+    {
+        return self::$_auth_request;
     }
 
     /**

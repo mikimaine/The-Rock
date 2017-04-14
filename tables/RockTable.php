@@ -43,37 +43,17 @@ class RockTable extends ModelClass implements ModelInterface
     protected static $_active = true;
 
     /**
-     * This will allow the Model to be registered in the list of AUTH_REQUESTS['GET']
+     * This will allow the Model to be registered in the list of AUTH_REQUESTS
      * You can remove this to use the default(false) that is found in the Super class
+     * Potential Values GET, POST, PATCH and DELETE
      * @var bool
      */
-    protected static $_auth_get = true;
-
-    /**
-     * This will allow the Model to be registered in the list of AUTH_REQUESTS['POST']
-     * You can remove this to use the default(false) that is found in the Super class
-     * @var bool
-     */
-    protected static $_auth_post = true;
-
-    /**
-     * This will allow the Model to be registered in the list of AUTH_REQUESTS['PATCH']
-     * You can remove this to use the default(false) that is found in the Super class
-     * @var bool
-     */
-    protected static $_auth_patch = true;
-
-    /**
-     * This will allow the Model to be registered in the list of AUTH_REQUESTS['DELETE']
-     * You can remove this to use the default(false) that is found in the Super class
-     * @var bool
-     */
-    protected static $_auth_delete = true;
-
+    protected  static $_auth_request = ['GET', 'POST', 'PATCH', 'DELETE'];
 
     /**
      * This wil allow the Model to be registered in the lists of FORBIDDEN_REQUESTS
      * You can remove this to use the default(empty) that is found in the Super class
+     * Potential Values GET, POST, PATCH and DELETE
      * @var array
      */
     protected static $_forbidden_request = ['GET','POST','PATCH','DELETE'];
