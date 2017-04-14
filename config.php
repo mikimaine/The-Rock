@@ -22,7 +22,7 @@ date_default_timezone_set('Africa/Addis_Ababa');
        * http://app.io/path_to_api/api/
        * `ROOT_URL` will be `/path_to_api`
        */
-      'ROOT_URL' => 'The-Rock',
+      'ROOT_URL' => '/rock',
 
       'TABLE_PREFIX'  => 'tr001_',
       'HASH' => 'sha512',

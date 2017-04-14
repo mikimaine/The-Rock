@@ -23,12 +23,24 @@
  */
   Config::init();
 
-  $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
+$dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
     $r->addRoute('GET', Config::get('ROOT_URL').'/auth', 'auth');
     $r->addRoute('POST', Config::get('ROOT_URL').'/auth', 'auth');
 
     $r->addRoute('GET', Config::get('ROOT_URL').'/all', 'all');
+    // GraphQL™
     $r->addRoute('GET', Config::get('ROOT_URL').'/graph/{ql:\[.{0,}\]}', 'graph');
+    // Server Timestamp
+    $r->addRoute('GET', Config::get('ROOT_URL').'/timestamp', 'timestamp');
+
+    // this is the service that handles the analytics
+    $r->addRoute("GET", Config::get("ROOT_URL")."/analytics", "STAT");
+
+    $r->addRoute("GET", Config::get("ROOT_URL")."/project_payroll", "PROJECT_FOR_PAYROLL");
+    $r->addRoute("GET", Config::get("ROOT_URL")."/employee_payroll", "EMPLOYEE_FOR_PAYROLL");
+    $r->addRoute("GET", Config::get("ROOT_URL")."/material_in_calc", "MATERIAL_CALC");
+    // change password
+    $r->addRoute("POST", Config::get("ROOT_URL")."/change-password", "CHANGE-PASSWORD");
 
     $r->addRoute('GET', Config::get('ROOT_URL').'/@S3/{filePath:.+}', 'S3');
     $r->addRoute('DELETE', Config::get('ROOT_URL').'/@S3/{filePath:.+}', 'S3');
@@ -41,36 +53,35 @@
     $r->addRoute('POST', Config::get('ROOT_URL').'/{table}', 'REST');
     $r->addRoute('PATCH', Config::get('ROOT_URL').'/{table}/{id:\d+}', 'REST');
     $r->addRoute('DELETE', Config::get('ROOT_URL').'/{table}/{id:\d+}', 'REST');
-  });
+});
 
-  $routeInfo = $dispatcher->dispatch($_SERVER['REQUEST_METHOD'], array_key_exists('REDIRECT_URL', $_SERVER) === true ? $_SERVER['REDIRECT_URL'] : '/');
+$routeInfo = $dispatcher->dispatch($_SERVER["REQUEST_METHOD"], array_key_exists("REDIRECT_URL", $_SERVER) === true ? $_SERVER["REDIRECT_URL"] : "/");
 
-  if (array_key_exists('REDIRECT_URL', $_SERVER) === false) {
-    $_SERVER['REDIRECT_URL'] = '/';
-  }
-
-  switch ($routeInfo[0]) {
+if(array_key_exists("REDIRECT_URL", $_SERVER) === false) {
+    $_SERVER["REDIRECT_URL"] = "/";
+}
+switch($routeInfo[0]) {
     case FastRoute\Dispatcher::NOT_FOUND:
-      Rock::halt(404, '`'.  $_SERVER["REQUEST_METHOD"] .'` method with URL `'. $_SERVER['REDIRECT_URL'] .'` not found');
-      break;
+        Rock::halt(404, "`".  $_SERVER["REQUEST_METHOD"] ."` method with URL `". $_SERVER["REDIRECT_URL"] ."` not found");
+        break;
 
     case FastRoute\Dispatcher::METHOD_NOT_ALLOWED:
-      Rock::halt(405, '`'.  $_SERVER['REQUEST_METHOD'] .'` method with URL `'. $_SERVER['REDIRECT_URL'] .'` not allowed');
-      break;
+        Rock::halt(405, "`".  $_SERVER["REQUEST_METHOD"] ."` method with URL `". $_SERVER["REDIRECT_URL"] ."` not allowed");
+        break;
 
     case FastRoute\Dispatcher::FOUND:
-      $db = Moedoo::db(Config::get('DB_HOST'), Config::get('DB_PORT'), Config::get('DB_USER'), Config::get('DB_PASSWORD'), Config::get('DB_NAME'));
+        $db = Moedoo::db(Config::get("DB_HOST"), Config::get("DB_PORT"), Config::get("DB_USER"), Config::get("DB_PASSWORD"), Config::get("DB_NAME"));
 
-      if (array_key_exists('table', $routeInfo[2]) === true) {
-        Rock::check($_SERVER['REQUEST_METHOD'], $routeInfo[2]['table']);
-      } else if ($routeInfo[1] === 'S3') {
-        Rock::check($_SERVER['REQUEST_METHOD'], 's3');
-      }
+        if(array_key_exists("table", $routeInfo[2]) === true) {
+            Rock::check($_SERVER["REQUEST_METHOD"], $routeInfo[2]["table"]);
+        } else if($routeInfo[1] === "S3") {
+            Rock::check($_SERVER["REQUEST_METHOD"], "s3");
+        }
 
-      try {
-        $__REST__[$routeInfo[1]]($routeInfo);
-      } catch (Exception $e) {
-        Rock::halt(400, $e->getMessage());
-      }
-      break;
-  }
+        try {
+            $__REST__[$routeInfo[1]]($routeInfo);
+        } catch(Exception $e) {
+            Rock::halt(400, $e->getMessage());
+        }
+        break;
+}
