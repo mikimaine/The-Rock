@@ -11,17 +11,35 @@ $dir_lookup =  [
                ];
 
 /**
- * Scanner method.
- * @TODO Currently does't include sub DIR
+ * Scanner method. 
+ * Loops through a given folder and requires all appropriate files
+ * Searches sub-directories as well.
  * @param string $dir
  * @param int $depth
  */
 $_require_all= (function ($name, $dir , $depth = 0) {
     // require all php files
-    $scan = glob("$dir/*$name.{php}",GLOB_BRACE);
-    foreach ($scan as $path) {
-            require_once $path;
-    }
+    try
+        {
+           $rdi = new recursiveDirectoryIterator($dir);
+           $it = new recursiveIteratorIterator( $rdi );
+            
+            while( $it->valid())
+            {
+                if( !$it->isDot() && $it->isFile() && $it->isReadable() && $it->current()->getExtension() === 'php' ){
+                         if (strpos($it->getFilename(), $name)) {
+                                require_once $it->key();
+                           }
+                        
+                }
+                        
+                /*** move to the next element ***/
+                $it->next();    
+            }
+        } catch(Exception $e) {
+                /*** echo the error message ***/
+                echo $e->getMessage();
+        }
 });
 
 /**
